@@ -52,14 +52,15 @@ The first run will check yt-dlp and initialize a session. Use the search form, p
 Run Ultrastar-CLI via docker (requires docker installation).
 
 ### Setup
-1. clone this repository
+1. Clone this repository.
 ```
 mkdir -p "${HOME}/Ultrastar-CLI"
-cd ${HOME}/Ultrastar-CLI || exit
+cd "${HOME}/Ultrastar-CLI" || exit
 git clone https://github.com/martiinii/UltraStar-CLI.git
 ```
 
-2. Build the docker container:
+2. Build the docker container.
+Set the number of CPUs to what you have available.
 ```
 cd "${HOME}/UltraStar-CLI/Ultrastar-CLI" || exit
 docker build \

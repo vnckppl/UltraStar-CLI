@@ -48,6 +48,42 @@ bunx --bun ultrastar
 The first run will check yt-dlp and initialize a session. Use the search form, pick a song, and press Enter to download. Your songs will be saved under `./songs/Artist - Title/`.
 
 
+## Docker
+Run Ultrastar-CLI via docker (requires docker installation).
+
+### Setup
+1. clone this repository
+```
+mkdir -p "${HOME}/Ultrastar-CLI"
+cd ${HOME}/Ultrastar-CLI || exit
+git clone https://github.com/martiinii/UltraStar-CLI.git
+```
+
+2. Build the docker container:
+```
+cd "${HOME}/UltraStar-CLI/Ultrastar-CLI" || exit
+docker build \
+       -t martiinii/ultrastar-cli \
+       . \
+       --cpuset-cpus 10
+```
+
+### Run Ultrastar-CLI via docker
+```
+# Environment
+dir="${HOME}/UltraStar-CLI"
+mkdir -p "${dir}/"{songs,config}
+
+# Run the docker container interactively
+docker \
+    run \
+    --rm -it \
+    --user "$(id -u):$(id -g)" \
+    -v "${dir}/songs":/app/songs \
+    -v "${dir}/config":/app/.config \
+    martiinii/ultrastar-cli:latest
+```
+
 ## Keyboard Shortcuts
 - In search form: Tab = switch field, Enter = search, Esc = quit
 - In results: ↑/↓ = select, Enter = download, ←/→ = page, e = edit search, r = refresh, Esc = back
